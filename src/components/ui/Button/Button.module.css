@@ -1,0 +1,200 @@
+/* ===================================================
+   LUMÉRA JEWELRY — Button Styles
+   src/components/ui/Button/Button.module.css
+=================================================== */
+
+/* ---- Base ---- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-base),
+    border-color     var(--transition-base),
+    color            var(--transition-base),
+    box-shadow       var(--transition-base),
+    transform        var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active:not(.btn--disabled) {
+  transform: translateY(1px);
+}
+
+/* ---- Sizes ---- */
+.btn--sm {
+  padding: 0.45rem 1.1rem;
+  font-size: var(--text-xs);
+  gap: 0.375rem;
+}
+
+.btn--md {
+  padding: 0.7rem 1.75rem;
+  font-size: var(--text-sm);
+}
+
+.btn--lg {
+  padding: 0.9rem 2.25rem;
+  font-size: var(--text-base);
+  gap: 0.625rem;
+}
+
+/* ---- Variants ---- */
+
+/* Primary — тёмный фон */
+.btn--primary {
+  background-color: var(--color-dark);
+  border-color:     var(--color-dark);
+  color:            var(--color-white);
+}
+
+.btn--primary:hover:not(.btn--disabled) {
+  background-color: var(--color-charcoal);
+  border-color:     var(--color-charcoal);
+  box-shadow:       var(--shadow-md);
+}
+
+/* Secondary — бежевый */
+.btn--secondary {
+  background-color: var(--color-beige-100);
+  border-color:     var(--color-beige-200);
+  color:            var(--color-charcoal);
+}
+
+.btn--secondary:hover:not(.btn--disabled) {
+  background-color: var(--color-beige-200);
+  border-color:     var(--color-beige-300);
+}
+
+/* Outline — прозрачный с тёмной рамкой */
+.btn--outline {
+  background-color: transparent;
+  border-color:     var(--color-charcoal);
+  color:            var(--color-charcoal);
+}
+
+.btn--outline:hover:not(.btn--disabled) {
+  background-color: var(--color-charcoal);
+  color:            var(--color-white);
+}
+
+/* Ghost — без фона и рамки */
+.btn--ghost {
+  background-color: transparent;
+  border-color:     transparent;
+  color:            var(--color-text-secondary);
+}
+
+.btn--ghost:hover:not(.btn--disabled) {
+  background-color: var(--color-beige-100);
+  color:            var(--color-charcoal);
+}
+
+/* Gold — акцентная золотая кнопка */
+.btn--gold {
+  background: linear-gradient(
+    135deg,
+    var(--color-gold-light) 0%,
+    var(--color-gold)       50%,
+    var(--color-gold-dark)  100%
+  );
+  border-color: transparent;
+  color:        var(--color-dark);
+  box-shadow:   var(--shadow-gold);
+}
+
+.btn--gold:hover:not(.btn--disabled) {
+  box-shadow: 0 6px 32px rgba(201, 168, 76, 0.38);
+  transform:  translateY(-1px);
+}
+
+/* ---- Shimmer on Gold ---- */
+.btn__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  transition: background-position 0.6s ease;
+  pointer-events: none;
+}
+
+.btn--gold:hover .btn__shimmer {
+  background-position: 200% 0;
+}
+
+/* ---- Full Width ---- */
+.btn--full {
+  width: 100%;
+}
+
+/* ---- Loading ---- */
+.btn--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.btn__spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.btn__spinner svg {
+  width: 100%;
+  height: 100%;
+  animation: btnSpin 0.8s linear infinite;
+}
+
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Disabled ---- */
+.btn--disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---- Icon ---- */
+.btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.btn__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Label ---- */
+.btn__label {
+  position: relative;
+  z-index: 1;
+}

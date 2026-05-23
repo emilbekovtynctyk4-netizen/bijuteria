@@ -1,0 +1,14 @@
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #1a1a1a;
+}
+body {
+  padding-top: calc(var(--header-top-h) + var(--header-main-h));
+}
+
+main {
+  flex: 1;
+}

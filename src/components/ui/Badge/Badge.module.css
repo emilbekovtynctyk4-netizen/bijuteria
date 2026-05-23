@@ -1,0 +1,67 @@
+/* ===================================================
+   LUMÉRA JEWELRY — Badge Styles
+   src/components/ui/Badge/Badge.module.css
+=================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ---- Sizes ---- */
+.badge--sm {
+  padding: 0.2rem 0.45rem;
+  font-size: 0.6rem;
+}
+
+.badge--md {
+  padding: 0.28rem 0.6rem;
+  font-size: var(--text-xs);
+}
+
+/* ---- Variants ---- */
+.badge--sale {
+  background-color: var(--color-badge-sale);
+  color: #fff;
+}
+
+.badge--hit {
+  background-color: var(--color-badge-hit);
+  color: #fff;
+}
+
+.badge--new {
+  background-color: var(--color-badge-new);
+  color: #fff;
+}
+
+.badge--limited {
+  background: linear-gradient(
+    135deg,
+    var(--color-gold-light),
+    var(--color-gold-dark)
+  );
+  color: var(--color-dark);
+}
+
+.badge--custom {
+  background-color: var(--color-beige-200);
+  color: var(--color-charcoal);
+}
+
+/* ---- Badge Group (positioned on card) ---- */
+.badgeGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+}
+

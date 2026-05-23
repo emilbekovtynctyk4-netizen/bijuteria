@@ -1,0 +1,164 @@
+/* ===================================================
+   LUMÉRA JEWELRY — Input Styles
+   src/components/ui/Input/Input.module.css
+=================================================== */
+
+/* ---- Field Wrapper ---- */
+.field {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.field--full {
+  width: 100%;
+  display: flex;
+}
+
+/* ---- Label ---- */
+.field__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-charcoal);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.field__required {
+  color: var(--color-badge-sale);
+  margin-left: 0.15rem;
+}
+
+/* ---- Control Wrapper ---- */
+.field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  transition:
+    border-color var(--transition-base),
+    box-shadow   var(--transition-base);
+  overflow: hidden;
+}
+
+.field__control:focus-within {
+  border-color: var(--color-gold);
+  box-shadow:   0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+/* Variant: filled */
+.field__control--filled {
+  background-color: var(--color-beige-100);
+  border-color:     var(--color-beige-200);
+}
+
+.field__control--filled:focus-within {
+  background-color: var(--color-surface);
+  border-color:     var(--color-gold);
+}
+
+/* Sizes */
+.field__control--sm { min-height: 36px; }
+.field__control--md { min-height: 44px; }
+.field__control--lg { min-height: 52px; }
+
+/* Error */
+.field__control--error {
+  border-color: var(--color-badge-sale);
+}
+
+.field__control--error:focus-within {
+  border-color: var(--color-badge-sale);
+  box-shadow:   0 0 0 3px rgba(192, 57, 43, 0.12);
+}
+
+/* Disabled */
+.field__control--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+  background-color: var(--color-beige-100);
+}
+
+/* Icon padding adjustments */
+.field__control--has-left .field__input  { padding-left: 2.5rem; }
+.field__control--has-right .field__input { padding-right: 2.5rem; }
+
+/* ---- Input Element ---- */
+.field__input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  padding: 0.6rem 0.875rem;
+  line-height: 1;
+}
+
+.field__input::placeholder {
+  color: var(--color-stone-400);
+  font-weight: 300;
+}
+
+/* ---- Icons ---- */
+.field__icon {
+  position: absolute;
+  left: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color-stone-500);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.field__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.field__iconRight {
+  position: absolute;
+  right: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-stone-500);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.field__iconRight:hover {
+  color: var(--color-charcoal);
+}
+
+.field__iconRight svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ---- Helper / Error text ---- */
+.field__helper {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: var(--leading-snug);
+}
+
+.field__helper--error {
+  color: var(--color-badge-sale);
+}
+

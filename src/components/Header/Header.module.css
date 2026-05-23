@@ -1,0 +1,329 @@
+/* ===================================================
+   LUMÉRA JEWELRY — Header Styles (UPDATED)
+   src/components/Header/Header.module.css
+=================================================== */
+
+/* ---- Main Header ---- */
+.header {
+  position: fixed;
+  top: var(--header-top-h);
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky);
+
+  height: var(--header-main-h);
+
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid var(--color-border);
+
+  transition:
+    box-shadow var(--transition-base),
+    background-color var(--transition-base),
+    backdrop-filter var(--transition-base);
+}
+
+/* ---- On scroll (glass effect stronger) ---- */
+.header--scrolled {
+  background-color: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ---- Layout container ---- */
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100%;
+  gap: var(--space-6);
+}
+
+/* ---- Burger ---- */
+.header__burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: var(--radius-sm);
+  background: none;
+
+  color: var(--color-charcoal);
+  cursor: pointer;
+
+  transition: background-color var(--transition-fast);
+}
+
+.header__burger:hover {
+  background-color: var(--color-beige-100);
+}
+
+.header__burger svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Logo ---- */
+.header__logo {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+.header__logoText {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-dark);
+  line-height: 0.9;
+}
+
+.header__logoSub {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* ---- Navigation ---- */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+
+  flex: 1;
+  margin-left: var(--space-10);
+}
+
+.header__navLink {
+  position: relative;
+
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+
+  color: var(--color-text-secondary);
+  text-decoration: none;
+
+  padding: var(--space-4) 0;
+  white-space: nowrap;
+
+  transition: color var(--transition-fast);
+}
+
+.header__navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    var(--color-gold-light),
+    var(--color-gold)
+  );
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+}
+
+.header__navLink:hover,
+.header__navLink--active {
+  color: var(--color-charcoal);
+}
+
+.header__navLink:hover::after,
+.header__navLink--active::after {
+  transform: scaleX(1);
+}
+
+/* ---- Search ---- */
+.header__search {
+  flex: 1;
+  max-width: 380px;
+}
+
+/* ---- Actions ---- */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.header__actionBtn {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: none;
+
+  background: none;
+  color: var(--color-text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.header__actionBtn:hover {
+  background-color: var(--color-beige-100);
+  color: var(--color-charcoal);
+}
+
+.header__actionBtn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Cart special ---- */
+.header__actionBtn--cart {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+.header__actionBtn--cart:hover {
+  background-color: var(--color-charcoal);
+}
+
+/* ---- Badge ---- */
+.header__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+
+  min-width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 4px;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  color: var(--color-dark);
+
+  background: linear-gradient(
+    135deg,
+    var(--color-gold-light),
+    var(--color-gold)
+  );
+
+  border: 1.5px solid var(--color-surface);
+  border-radius: var(--radius-full);
+
+  box-shadow: var(--shadow-xs);
+}
+
+/* ---- Mobile search ---- */
+.header__mobileSearch {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+
+  padding: var(--space-4) 0;
+
+  animation: slideDown 0.25s ease both;
+
+  box-shadow: var(--shadow-md);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+  .header__nav {
+    gap: var(--space-6);
+  }
+
+  .header__search {
+    max-width: 280px;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+  .header__burger {
+    display: flex;
+  }
+
+  .header__nav,
+  .header__search {
+    display: none;
+  }
+
+  .header__actionBtn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .header__actionBtn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ---- Small mobile ---- */
+@media (max-width: 480px) {
+  .header__logoText {
+    font-size: 1.4rem;
+  }
+
+  .header__actions {
+    gap: var(--space-1);
+  }
+
+  .header__badge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+}
