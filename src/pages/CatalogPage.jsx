@@ -1,60 +1,77 @@
 import { useEffect, useMemo, useState } from 'react';
-import { products as initialProducts } from '../data/products';
+import { catalogService } from '../api';
+import { products as fallbackProducts } from '../data/products';
 import ProductGrid from '../components/Products/ProductGrid';
-import AddProductForm from '../components/Products/AddProductForm';
 import styles from './CatalogPage.module.css';
 
-const STORAGE_KEY = 'catalog_products';
-
 export default function CatalogPage() {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
   const [priceMin, setPriceMin] = useState('');
   const [priceMax, setPriceMax] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Загрузить товары с бекенда
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
+    const loadProducts = async () => {
       try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setProducts(parsed);
-        }
-      } catch (error) {
-        console.warn('Не удалось загрузить сохранённые товары', error);
+        setLoading(true);
+        setError(null);
+        const response = await catalogService.getProducts({
+          search: search || undefined,
+          category: category !== 'all' ? category : undefined,
+        });
+        
+        // Backend может вернуть либо объект с items, либо массив
+        const productList = response?.items || response || [];
+        setProducts(Array.isArray(productList) ? productList : []);
+      } catch (err) {
+        console.warn('Failed to load products from backend, using fallback:', err);
+        // Использовать локальные данные как fallback
+        setProducts(fallbackProducts);
+        setError('Ошибка при загрузке товаров. Показаны локальные данные.');
+      } finally {
+        setLoading(false);
       }
-    }
-  }, []);
+    };
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-  }, [products]);
+    const timer = setTimeout(loadProducts, 300); // Дебаунс для быстрого поиска
+    return () => clearTimeout(timer);
+  }, [search, category]);
 
   const categories = useMemo(() => {
-    const unique = new Set(products.map((product) => product.category || 'Другие'));
+    // Получить уникальные категории из товаров
+    const unique = new Set(
+      products
+        .filter((p) => p.category_id || p.category)
+        .map((p) => p.category_id || p.category || 'Другие')
+    );
     return ['all', ...Array.from(unique)];
   }, [products]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
-      const normalizedTitle = product.title.toLowerCase();
-      const normalizedSearch = search.toLowerCase();
-      const matchesSearch = normalizedTitle.includes(normalizedSearch) ||
-        product.description.toLowerCase().includes(normalizedSearch) ||
-        product.material.toLowerCase().includes(normalizedSearch);
+      const title = (product.name || product.title || '').toLowerCase();
+      const description = (product.description || product.short_description || '').toLowerCase();
+      const queryLower = search.toLowerCase();
 
-      const matchesCategory = category === 'all' || product.category === category;
-      const matchesMin = priceMin === '' || product.price >= Number(priceMin);
-      const matchesMax = priceMax === '' || product.price <= Number(priceMax);
+      const matchesSearch = !search || 
+        title.includes(queryLower) ||
+        description.includes(queryLower);
+
+      const matchesCategory = category === 'all' || 
+        product.category_id === category ||
+        product.category === category;
+
+      const price = parseFloat(product.price) || 0;
+      const matchesMin = !priceMin || price >= Number(priceMin);
+      const matchesMax = !priceMax || price <= Number(priceMax);
 
       return matchesSearch && matchesCategory && matchesMin && matchesMax;
     });
   }, [products, search, category, priceMin, priceMax]);
-
-  const handleAddProduct = (newProduct) => {
-    setProducts((prev) => [newProduct, ...prev]);
-  };
 
   return (
     <main className={styles.catalog}>
@@ -63,7 +80,7 @@ export default function CatalogPage() {
           <span className={styles.label}>Каталог</span>
           <h1 className={styles.title}>Все украшения</h1>
           <p className={styles.subtitle}>
-            Фильтруйте, ищите и добавляйте новые украшения прямо на сайт.
+            Фильтруйте и ищите украшения по цене, названию и материалу.
           </p>
         </div>
 
@@ -72,6 +89,12 @@ export default function CatalogPage() {
           <span>{products.length} всего</span>
         </div>
       </div>
+
+      {error && (
+        <div className={styles.errorMessage}>
+          ⚠️ {error}
+        </div>
+      )}
 
       <section className={styles.panel}>
         <div className={styles.filterBlock}>
@@ -82,12 +105,17 @@ export default function CatalogPage() {
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Название, материал или описание"
+              disabled={loading}
             />
           </label>
 
           <label className={styles.field}>
             Категория
-            <select value={category} onChange={(event) => setCategory(event.target.value)}>
+            <select 
+              value={category} 
+              onChange={(event) => setCategory(event.target.value)}
+              disabled={loading}
+            >
               {categories.map((option) => (
                 <option key={option} value={option}>
                   {option === 'all' ? 'Все категории' : option}
@@ -105,6 +133,7 @@ export default function CatalogPage() {
                 value={priceMin}
                 onChange={(event) => setPriceMin(event.target.value)}
                 placeholder="0"
+                disabled={loading}
               />
             </label>
 
@@ -116,15 +145,18 @@ export default function CatalogPage() {
                 value={priceMax}
                 onChange={(event) => setPriceMax(event.target.value)}
                 placeholder="9999"
+                disabled={loading}
               />
             </label>
           </div>
         </div>
-
-        <div className={styles.formBlock}>
-          <AddProductForm categories={categories.filter((item) => item !== 'all')} onAdd={handleAddProduct} />
-        </div>
       </section>
+
+      {loading && (
+        <div className={styles.loading}>
+          Загрузка товаров...
+        </div>
+      )}
 
       <ProductGrid products={filteredProducts} />
     </main>

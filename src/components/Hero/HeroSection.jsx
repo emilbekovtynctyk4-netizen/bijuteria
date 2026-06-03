@@ -10,8 +10,7 @@ const HeroSection = () => {
           <span className={styles.subtitle}>Новая коллекция 2026</span>
 
           <h1 className={styles.title}>
-            Подчеркни свою красоту с{" "}
-            <span className={styles.brand}>Luméra</span>
+            Украшения, которые<br />остаются с тобой
           </h1>
 
           <p className={styles.description}>
@@ -20,7 +19,10 @@ const HeroSection = () => {
           </p>
 
           <div className={styles.actions}>
-            <button className={styles.primaryBtn}>
+            <button className={styles.primaryBtn} onClick={() => {
+              const catalogSection = document.getElementById('catalog');
+              catalogSection.scrollIntoView({ behavior: 'smooth' });
+            }}>
               Перейти в каталог
               <ArrowRight size={18} />
             </button>

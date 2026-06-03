@@ -103,7 +103,7 @@
 }
 
 .productPage__button {
-  background: #c39b6a;
+  background: var(--color-wine);
   color: #fff;
 }
 

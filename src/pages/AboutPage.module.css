@@ -6,8 +6,8 @@
   display: inline-flex;
   padding: 0.5rem 1rem;
   border-radius: 999px;
-  background: #f4efe4;
-  color: #8b6f4a;
+  background: var(--color-beige-2);
+  color: var(--color-wine);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -18,8 +18,8 @@
   margin: 1rem 0 1.5rem;
   font-size: clamp(2rem, 3vw, 3rem);
   line-height: 1.05;
-  font-family: 'Playfair Display', serif;
-  color: #231a12;
+  font-family: var(--font-display);
+  color: var(--color-wine);
 }
 
 .lead {
@@ -34,14 +34,14 @@
   margin-bottom: 2rem;
   padding: 1.8rem;
   border-radius: 24px;
-  background: #fff9f2;
-  border: 1px solid #ecdfc6;
+  background: var(--color-bg-light-2);
+  border: 1px solid var(--color-beige-2);
 }
 
 .section h2 {
   margin: 0 0 1rem;
   font-size: 1.25rem;
-  color: #2c2219;
+  color: var(--color-wine);
 }
 
 .section p,

@@ -151,7 +151,7 @@ export default function Header() {
                 className={cn(
                   styles.header__navLink,
                   isActivePage(link.path) && styles['header__navLink--active']
-                )}
+                )}  
               >
                 {link.label}
               </Link>

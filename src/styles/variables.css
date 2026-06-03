@@ -6,12 +6,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
 
 :root {
-  /* ---- Brand Colors ---- */
+  /* ---- Brand Colors (Palette 1: Gold) ---- */
   --color-gold:          #C9A84C;
   --color-gold-light:    #E2C97E;
   --color-gold-dark:     #A8832A;
   --color-gold-pale:     #F5EDD6;
   --color-gold-muted:    #E8D9B0;
+
+  /* ---- Brand Colors (Palette 2: Wine/Rose) ---- */
+  --color-wine:          #7A1F2B;
+  --color-rose-dusty:    #C97C7C;
+  --color-rose-soft:     #D94F70;
+  --color-beige-2:       #EFE1D6;
+  --color-bg-light-2:    #FAF6F2;
 
   /* ---- Neutrals ---- */
   --color-white:         #FFFFFF;

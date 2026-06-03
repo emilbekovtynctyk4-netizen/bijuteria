@@ -1,7 +1,7 @@
 .hero {
   width: 100%;
   padding: 70px 20px;
-  background: #ffffff;
+  background: var(--color-bg-light-2);
 }
 
 .container {
@@ -22,7 +22,7 @@
 .subtitle {
   font-size: 14px;
   font-weight: 500;
-  color: #c39b6a;
+  color: var(--color-rose-soft);
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -30,19 +30,19 @@
 .title {
   font-size: 64px;
   line-height: 1.1;
-  color: #333333;
-  font-family: "Playfair Display", serif;
+  color: var(--color-wine);
+  font-family: var(--font-display);
 }
 
 .brand {
-  color: #c39b6a;
+  color: var(--color-rose-soft);
   font-style: italic;
 }
 
 .description {
   font-size: 18px;
   line-height: 1.7;
-  color: #666666;
+  color: var(--color-text-secondary);
   max-width: 520px;
 }
 
@@ -58,7 +58,7 @@
   align-items: center;
   gap: 10px;
   border: none;
-  background: #c39b6a;
+  background: var(--color-wine);
   color: white;
   padding: 16px 28px;
   border-radius: 12px;
@@ -69,14 +69,14 @@
 }
 
 .primaryBtn:hover {
-  opacity: 0.9;
+  background: var(--color-rose-soft);
   transform: translateY(-2px);
 }
 
 .secondaryBtn {
-  border: 1px solid #c39b6a;
+  border: 1px solid var(--color-rose-dusty);
   background: transparent;
-  color: #c39b6a;
+  color: var(--color-wine);
   padding: 16px 28px;
   border-radius: 12px;
   cursor: pointer;
@@ -86,7 +86,7 @@
 }
 
 .secondaryBtn:hover {
-  background: #c39b6a;
+  background: var(--color-rose-dusty);
   color: white;
 }
 
@@ -113,7 +113,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: #c39b6a;
+  color: var(--color-wine);
   font-weight: 700;
   font-size: 14px;
   backdrop-filter: blur(8px);
@@ -135,7 +135,7 @@
 }
 
 .active {
-  background: #c39b6a;
+  background: var(--color-wine);
 }
 
 @media (max-width: 992px) {

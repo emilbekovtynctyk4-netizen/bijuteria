@@ -48,7 +48,7 @@
 }
 
 .link {
-  color: #c39b6a;
+  color: var(--color-wine);
   text-decoration: none;
   font-weight: 700;
 }

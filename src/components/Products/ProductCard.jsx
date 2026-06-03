@@ -42,7 +42,7 @@ const ProductCard = ({
 
         <div className={styles.content}>
           <div className={styles.rating}>
-            <Star size={15} fill="#C39B6A" />
+            <Star size={15} className={styles.star} />
             <span>4.9</span>
           </div>
 

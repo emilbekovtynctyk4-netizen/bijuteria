@@ -88,7 +88,7 @@
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: #c39b6a;
+  border-color: var(--color-wine);
 }
 
 .priceRow {
@@ -116,4 +116,21 @@
     flex-direction: column;
     align-items: stretch;
   }
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #5b5446;
+  font-size: 1.1rem;
+}
+
+.errorMessage {
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 0.5rem;
+  color: #856404;
+  font-weight: 500;
 }

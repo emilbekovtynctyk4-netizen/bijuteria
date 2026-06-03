@@ -21,16 +21,12 @@
   position: absolute;
   top: 18px;
   left: 18px;
-
-  background: #c39b6a;
+  background: var(--color-wine);
   color: white;
-
   padding: 8px 14px;
   border-radius: 30px;
-
   font-size: 12px;
   font-weight: 600;
-
   z-index: 2;
 }
 
@@ -59,7 +55,7 @@
 }
 
 .favorite:hover {
-  color: #c39b6a;
+  color: var(--color-wine);
 }
 
 .imageWrapper {
@@ -108,9 +104,9 @@
 
 .title {
   font-size: 22px;
-  color: #333333;
+  color: var(--color-wine);
   margin-bottom: 14px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-display);
 }
 
 .prices {
@@ -130,7 +126,7 @@
 .price {
   font-size: 22px;
   font-weight: 700;
-  color: #c39b6a;
+  color: var(--color-wine);
 }
 
 .oldPrice {
@@ -141,29 +137,23 @@
 
 .cartBtn {
   width: 100%;
-
   border: none;
   border-radius: 14px;
-
-  background: #c39b6a;
+  background: var(--color-wine);
   color: white;
-
   padding: 15px;
-
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   font-size: 15px;
   font-weight: 600;
-
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .cartBtn:hover {
-  opacity: 0.9;
+  background: var(--color-rose-soft);
 }
 
 @media (max-width: 576px) {
@@ -174,4 +164,9 @@
   .title {
     font-size: 18px;
   }
+}
+
+.star {
+  fill: var(--color-wine);
+  color: var(--color-wine);
 }

@@ -44,9 +44,9 @@
 
 .title {
   font-size: 22px;
-  color: #333333;
+  color: var(--color-wine);
   margin-bottom: 6px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-display);
 }
 
 .count {
@@ -57,17 +57,13 @@
 .button {
   width: 44px;
   height: 44px;
-
   border: none;
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: #c39b6a;
+  background: var(--color-wine);
   color: white;
-
   cursor: pointer;
   transition: 0.3s ease;
 }
